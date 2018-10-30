@@ -1,7 +1,8 @@
 .DS_Store
 node_modules
-/src
-/public
+
+# /src (Heroku)
+# /public (Heroku)
 
 # local env files
 .env.local
