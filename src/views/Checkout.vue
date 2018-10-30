@@ -100,17 +100,9 @@ import {
     mapGetters
 }
 from 'vuex'
-import m2eAPI from '../api/m2eAPI'
 import _ from 'lodash'
-import {
-    BreedingRhombusSpinner
-}
-from 'epic-spinners'
 
 export default {
-    components: {
-        BreedingRhombusSpinner
-    },
     data() {
         return {
             productCart: [],
