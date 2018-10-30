@@ -46,7 +46,6 @@ export default {
     },
     methods: {
         addProductToCart(product) {
-
             this.$store.dispatch('addProductToCart', product)
             this.text = product.name + " added."
             this.snackbar = true;
@@ -67,20 +66,6 @@ export default {
     width: 100%;
 }
 
-.flex-item {
-    background: tomato;
-    padding: 5px;
-    width: 400px;
-    height: 250px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    line-height: 150px;
-    color: white;
-    font-weight: bold;
-    font-size: 3em;
-    text-align: center;
-}
-
 .product-item {
     width: 350px;
 }
@@ -89,38 +74,5 @@ export default {
     font-size: 2em;
 }
 
-@media (min-width: 1904px) {
-    .flex-item {
-        background: blue;
-    }
-}
-
-@media (max-width: 1904px) and (min-width: 1264px) {
-    .flex-item {
-        background: green;
-        width: 300px;
-    }
-}
-
-@media (max-width: 1264px) and (min-width: 960px) {
-    .flex-item {
-        background: yellow;
-        width: 200px;
-    }
-}
-
-@media (max-width: 960px) and (min-width: 600px) {
-    .flex-item {
-        background: cyan;
-        width: 200px;
-    }
-}
-
-@media (max-width: 600px) {
-    .flex-item {
-        background: brown;
-        width: 300px;
-    }
-}
 
 </style>
