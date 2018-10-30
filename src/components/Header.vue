@@ -17,7 +17,7 @@
                 </v-btn>
             </v-badge>
 
-            <v-btn flat>Login</v-btn>
+            <v-btn flat :loading="stockReseted" @click="resetStock()">Reset Stock</v-btn>
         </v-toolbar-items>
     </v-toolbar>
 </div>
@@ -33,7 +33,9 @@ from 'vuex'
 
 export default {
     data() {
-            return {}
+            return {
+              stockReseted: false
+            }
         },
         computed: {
             ...mapGetters({
@@ -46,6 +48,17 @@ export default {
         methods: {
             toHome() {
                 this.$router.push("/");
+            },
+            resetStock(){
+              this.stockReseted = true;
+              this.$store.dispatch('resetStock')
+                .then(()=>{
+                  this.stockReseted = false;
+                  location.reload()
+                })
+                .catch(error => {
+
+                })
             }
         }
 }

@@ -142,6 +142,14 @@ const actions = {
    increaseStockByOne(context, payload) {
       let itemFound = _.find(state.cart, function(o){return o.name===payload});
       context.commit('increaseStockByOneHandler', itemFound);
+   },
+
+   resetStock(context){
+     return m2eAPI.resetStock()
+       .then(result =>{
+         
+       })
+       .catch(error => console.log(error))
    }
 
 }

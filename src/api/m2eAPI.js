@@ -32,5 +32,18 @@ export default {
     .then(response => {
       return response.data;
     })
- }
+ },
+
+ /*
+  * Reset stock
+  */
+  resetStock(){
+    return axios({
+       method: 'GET',
+       url: process.env.VUE_APP_M2E_API+"/products/reset"
+     })
+     .then(response => {
+       return response.data;
+     })
+  }
 }

@@ -40,6 +40,30 @@
                         </td>
                     </template>
                 </v-data-table>
+                <div class="text-xs-right  mt-3">
+                    <v-btn dark color="blue" @click="dialog = true">Checkout</v-btn>
+                    <v-dialog v-model="dialog" max-width="290">
+                        <v-card>
+                            <v-card-title class="headline">Have you finished to add products?</v-card-title>
+
+                            <v-card-text>
+                                We are going to proceed with your cart. Thank you to buy in M2E Shop.
+                            </v-card-text>
+
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+
+                                <v-btn color="green darken-1" flat="flat" @click="dialog = false">
+                                    No
+                                </v-btn>
+
+                                <v-btn color="green darken-1" flat="flat" @click="checkout()">
+                                    Yes
+                                </v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-dialog>
+                </div>
             </v-flex>
             <v-flex xl3 lg3 md3 sm12 xs12>
                 <v-container>
@@ -90,6 +114,7 @@ export default {
     data() {
         return {
             productCart: [],
+            dialog: false,
             headers: [{
                     text: '',
                     align: 'center',
@@ -153,37 +178,40 @@ export default {
 
     },
     methods: {
-        ApplyVoucherCode() {
-          if (this.getCartProducts.length === 0) {
-              this.voucherError = "Add something to your basket"
-          } else {
-              if (this.voucher === process.env.VUE_APP_VOUCHER_CODE) {
-                  this.applyvoucher = true;
-                  this.voucherError = ""
-              } else {
-                  this.voucherError = "Wrong voucher code."
-                  this.voucher = "";
-              }
-          }
-        },
-        removeItem(productName) {
-            let itemFound = _.find(this.getCart, function(o) {
-                return o.name === productName
-            });
-            this.$store.dispatch('removeProductFromCart', itemFound);
-        },
-        getStockProduct(productName) {
-            let itemFound = _.find(this.getProductList, function(o) {
-                return o.name === productName
-            });
-            return itemFound.stock;
-        },
-        decreaseItem(productName) {
-            this.$store.dispatch('decreaseProductFromCart', productName);
-        },
-        addItem(productName) {
-            this.$store.dispatch('increaseQuantity', productName);
-        }
+        checkout() {
+                location.assign("/");
+            },
+            ApplyVoucherCode() {
+                if (this.getCartProducts.length === 0) {
+                    this.voucherError = "Add something to your basket"
+                } else {
+                    if (this.voucher === process.env.VUE_APP_VOUCHER_CODE) {
+                        this.applyvoucher = true;
+                        this.voucherError = ""
+                    } else {
+                        this.voucherError = "Wrong voucher code."
+                        this.voucher = "";
+                    }
+                }
+            },
+            removeItem(productName) {
+                let itemFound = _.find(this.getCart, function(o) {
+                    return o.name === productName
+                });
+                this.$store.dispatch('removeProductFromCart', itemFound);
+            },
+            getStockProduct(productName) {
+                let itemFound = _.find(this.getProductList, function(o) {
+                    return o.name === productName
+                });
+                return itemFound.stock;
+            },
+            decreaseItem(productName) {
+                this.$store.dispatch('decreaseProductFromCart', productName);
+            },
+            addItem(productName) {
+                this.$store.dispatch('increaseQuantity', productName);
+            }
     }
 }
 
